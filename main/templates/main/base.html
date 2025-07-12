@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>상명대학교 통합정보시스템</title>
+  <link rel="stylesheet" href="{% static 'main/style.css' %}">
+</head>
+<body>
+
+<!-- 상단 파란 배너 -->
+<div class="top-banner">
+  <div class="banner-title">샘물 통합정보시스템</div>
+</div>
+
+<!-- 왼쪽 고정 메뉴 -->
+<div class="left-sidebar">
+  <div class="menu-icon" onclick="toggleMainMenu()">&#9776;</div>
+  <div class="menu-text" onclick="toggleMainMenu()">학생<br>기본</div>
+</div>
+
+<!-- 오른쪽 2단 메뉴 -->
+<div id="mainSubmenu" class="middle-menu hidden">
+  <div class="close-btn" onclick="toggleMainMenu()">✕</div>
+  <ul class="submenu-list">
+
+    <!-- 학적정보 -->
+    <li>
+      <div class="submenu-title" onclick="toggleSubMenu('hakjukSub')">
+        학적정보 <span class="arrow">▼</span>
+      </div>
+      <ul id="hakjukSub" class="submenu-items hidden">
+        <li><a href="#">개인정보수정</a></li>
+        <li><a href="#">휴학/복학/자퇴 신청</a></li>
+      </ul>
+    </li>
+
+    <!-- 수업정보 -->
+    <li>
+      <div class="submenu-title" onclick="toggleSubMenu('classSub')">
+        수업정보 <span class="arrow">▼</span>
+      </div>
+      <ul id="classSub" class="submenu-items hidden">
+        <li><a href="#">강좌및수업계획서조회</a></li>
+        <li><a href="#">수강신청현황표</a></li>
+      </ul>
+    </li>
+
+    <!-- 성적정보 -->
+    <li>
+      <div class="submenu-title" onclick="toggleSubMenu('gradeSub')">
+        성적정보 <span class="arrow">▼</span>
+      </div>
+      <ul id="gradeSub" class="submenu-items hidden">
+        <li><a href="#">전체성적조회</a></li>
+      </ul>
+    </li>
+
+    <!-- 강의평가 -->
+    <li>
+    <div class="submenu-title" onclick="toggleSubMenu('evalSub')">
+        강의평가 <span class="arrow">▼</span>
+    </div>
+    <ul id="evalSub" class="submenu-items hidden">
+        <li><a href="{% url 'mid_evaluation' %}">중간강의평가</a></li>
+        <li><a href="#">기말강의평가</a></li>
+    </ul>
+    </li>
+
+
+    <!-- 졸업 -->
+    <li>
+      <div class="submenu-title" onclick="toggleSubMenu('graduateSub')">
+        졸업 <span class="arrow">▼</span>
+      </div>
+      <ul id="graduateSub" class="submenu-items hidden">
+        <li><a href="#">졸업기준학점조회</a></li>
+      </ul>
+    </li>
+
+    <!-- 등록 -->
+    <li>
+      <div class="submenu-title" onclick="toggleSubMenu('registerSub')">
+        등록정보 <span class="arrow">▼</span>
+      </div>
+      <ul id="registerSub" class="submenu-items hidden">
+        <li><a href="#">등록조회(고지서 출력)</a></li>
+      </ul>
+    </li>
+
+  </ul>
+</div>
+
+<script>
+function toggleMainMenu() {
+  const submenu = document.getElementById('mainSubmenu');
+  submenu.classList.toggle('hidden');
+}
+
+function toggleSubMenu(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('hidden');
+}
+</script>
+
+
+
+<div class="content">
+  {% block content %}
+  {% endblock %}
+</div>
+
+<script>
+function toggleMainMenu() {
+  const submenu = document.getElementById('mainSubmenu');
+  submenu.classList.toggle('hidden');
+}
+
+function toggleSubMenu(id) {
+  const sub = document.getElementById(id);
+  sub.classList.toggle('hidden');
+}
+</script>
+
+
+
+
+</body>
+</html>
