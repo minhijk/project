@@ -26,19 +26,23 @@
     </tr>
   </thead>
   <tbody>
-    {% for i in dummy_range %}
+  {% for lec in lectures %}
   <tr>
-    <td>{{ i }}</td>
-    <td><button style="background-color: #1f75cb; color: white;">강의평가</button></td>
-    <td>{% if i|divisibleby:2 %}피드백{% else %}미입력{% endif %}</td>
-    <td>HBJQ00{{ i }}-1</td>
-    <td>예시 교과목</td>
-    <td>교수{{ i }}</td>
-    <td>3</td>
+    <td>{{ lec.id }}</td>
+    <td>
+      <a href="{% url 'mid_eval_form' lec.id %}">
+        <button style="background-color: #1f75cb; color: white;">강의평가</button>
+      </a>
+    </td>
+    <td>{% if lec.feedback %}피드백{% else %}미입력{% endif %}</td>
+    <td>{{ lec.code }}</td>
+    <td>{{ lec.title }}</td>
+    <td>{{ lec.professor }}</td>
+    <td>{{ lec.credit }}</td>
   </tr>
-{% endfor %}
+  {% endfor %}
+</tbody>
 
-  </tbody>
 </table>
 
 <!-- 🔻 하단 안내 -->
@@ -55,9 +59,5 @@
   본인은 위 내용을 충분히 숙지하였으며, 이에 동의합니다.
 </div>
 
-<!-- 체크박스 -->
-<div style="margin-top: 10px;">
-  <input type="checkbox" id="agree">
-  <label for="agree">(체크 시에만 저장 가능)</label>
-</div>
+
 {% endblock %}
